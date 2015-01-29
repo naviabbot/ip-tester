@@ -3,6 +3,8 @@
 # You will need Ruby and the net-ping gem installed.
 # Ruby can be found at ruby-lang.org and the net-ping gem can be installed via the 'gem' command.
 
+require "rubygems"
+require "bundler/setup"
 require "net/ping"
 require "ffi"
 require "green_shoes"
