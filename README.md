@@ -17,8 +17,10 @@ sudo yum install ruby
 
 or rvm
 ```
-rvm install latest; rvm use latest
-```
+rvm install <latest>/*; rvm use <latest>/*
+```  
+An asterisk means that the version would have to be known.
+
 ###For Windows
 You can get Ruby using the one-click installer from http://rubyinstaller.org/
 
