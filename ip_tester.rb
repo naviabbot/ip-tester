@@ -3,8 +3,6 @@
 # This program is to ping the IP given on HTTP, ICMP, and RDP ports respectively
 # You will need Ruby and the net-ping gem installed.
 # Ruby can be found at ruby-lang.org and the net-ping gem can be installed via the 'gem' command.
-require "rubygems"
-require "bundler/setup"
 require "net/ping"
 require "ffi"
 require "green_shoes"
@@ -34,9 +32,9 @@ end
 test = Net::Ping::HTTP.new("http://#{validate[0]}.#{validate[1]}.#{validate[2]}.#{validate[3]}")
 alert "Testing HTTP"
 if test.ping
-alert "IP is active."
+alert "It works!"
 else
-alert "IP is not active"
+alert "She's dead Jim."
 end
 
 ##
@@ -46,10 +44,19 @@ end
 alert "Testing ICMP"
 case RbConfig::CONFIG['host_os'].downcase
 when /mingw|mswin/
-`ping #{validate[0]}.#{validate[1]}.#{validate[2]}.#{validate[3]} > pingtest.#{validate[0]}.#{validate[1]}.#{validate[2]}.#{validate[3]}.txt`
+`ping #{validate[0]}.#{validate[1]}.#{validate[2]}.#{validate[3]}`
+if ($?.exitstatus == 0) do
+  alert "Device is up!"
+else
+  alert "Device Dead"
+end
 when /linux|darwin|bsd|solaris|sunos/
-`ping -c 4 #{validate[0]}.#{validate[1]}.#{validate[2]}.#{validate[3]} > pingtest.#{validate[0]}.#{validate[1]}.#{validate[2]}.#{validate[3]}.txt`
-alert "Please see the file 'pingtest.#{validate[0]}.#{validate[1]}.#{validate[2]}.#{validate[3]}.txt' for results."
+`ping -c 4 #{validate[0]}.#{validate[1]}.#{validate[2]}.#{validate[3]}`
+if ($?.exitstatus == 0) do
+  alert "Device is up!"
+else
+  alert "Device Dead"
+end
 else
 alert "Use Standard Ruby"
 end 
