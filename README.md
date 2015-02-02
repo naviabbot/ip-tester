@@ -23,10 +23,10 @@ rvm install latest; rvm use latest
 You can get Ruby using the one-click installer from http://rubyinstaller.org/
 
 ##Gems
-After you install Ruby, next would be the gems
+After you install Ruby, next would be the gems. One can do this with Bundler.
 
 ```
-gem install ffi net-ping green_shoes
+gem install bundler && bundle install
 ```
 
 #Install Done!
